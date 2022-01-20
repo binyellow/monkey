@@ -19,7 +19,7 @@ export const getClosestTable = (element) => {
   let parent = element;
   do {
     // 元素节点 && table
-    if (parent.nodeType === 1 && parent.nodeName === "TABLE") {
+    if (parent?.nodeType === 1 && parent?.nodeName === "TABLE") {
       return parent;
     } else {
       parent = parent.parentNode;
@@ -122,4 +122,6 @@ export function randomString(e) {
 export const genEnumAndOptions = (str) => {
   const  splitElementArr = ['，', ',', '、', ' '];
   const curSplitEle = splitElementArr?.find(r=> str.indexOf(r) >= 0);
+  const splitEnums = str.split(curSplitEle);
+  console.log(1);
 };

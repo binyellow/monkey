@@ -4,7 +4,7 @@ import { align2Selection, genMock, getClosestTable, genResultFromTable, genEnumA
 import ConfigPopover from "./components/ConfigPopover/index";
 
 const app = () => {
-
+  const [genEnum, setGenEnum] = useState(false);
   const ref = useRef(null);
 
   const [selectedText, setSelectedText] = useState("");
@@ -34,7 +34,7 @@ const app = () => {
     } catch (error) {
       console.log("error");
 
-      if(ref?.current?.genEnum) {
+      if (genEnum) {
         console.log(genEnumAndOptions(selectedText));
         return;
       }
@@ -49,11 +49,10 @@ const app = () => {
   return (
     <>
       <div className="popover">
-        <ConfigPopover ref={ref} onSure={handleSure} />
+        <ConfigPopover ref={ref} onSure={handleSure} genEnum={genEnum} setGenEnum={setGenEnum} />
       </div>
     </>
   );
 };
 
 export default app;
-

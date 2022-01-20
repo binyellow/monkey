@@ -5,10 +5,9 @@ import { align2Selection } from "../../utils";
 const cls = "popover-wrapper";
 
 const ConfigPopover = (props, ref) => {
-  const { onSure } = props;
+  const { onSure, genEnum, setGenEnum } = props;
   const [interfaceChecked, setInterfaceChecked] = useState(true);
   const [mockChecked, setMockChecked] = useState(true);
-  const [genEnum, setGenEnum] = useState(false);
 
   useEffect(() => {
     ref.current.addEventListener(
@@ -19,10 +18,6 @@ const ConfigPopover = (props, ref) => {
       true
     );
   }, []);
-
-  useImperativeHandle(ref, ()=> ({
-    genEnum
-  }));
 
   const toggleChecked = (key) => {
     if (key === "interface") {
