@@ -8,7 +8,9 @@ specifiers:
   '@types/tampermonkey': ^4.0.0
   antd: ^4.18.4
   clipboardy: ^2.3.0
+  dom-align: ^1.12.2
   fs-extra: ^10.0.0
+  json2ts: ^0.0.7
   less: ^4.1.2
   react: ^17.0.2
   react-dom: ^17.0.2
@@ -21,6 +23,8 @@ specifiers:
 
 dependencies:
   antd: registry.npmmirror.com/antd/4.18.4_react-dom@17.0.2+react@17.0.2
+  dom-align: registry.nlark.com/dom-align/1.12.2
+  json2ts: registry.npmmirror.com/json2ts/0.0.7
 
 devDependencies:
   '@types/fs-extra': registry.npmmirror.com/@types/fs-extra/9.0.13
@@ -1569,6 +1573,14 @@ packages:
     version: 3.14.1
     dev: true
 
+  registry.npmmirror.com/json2ts/0.0.7:
+    resolution: {integrity: sha1-qw7mRpFqh1Igk2M/H/CohHSq+eU=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/json2ts/download/json2ts-0.0.7.tgz}
+    name: json2ts
+    version: 0.0.7
+    dependencies:
+      underscore: registry.npmmirror.com/underscore/1.13.2
+    dev: false
+
   registry.npmmirror.com/less/4.1.2:
     resolution: {integrity: sha512-EoQp/Et7OSOVu0aJknJOtlXZsnr8XE8KwuzTHOLeVSEx8pVWUICc8Q0VYRHgzyjX78nMEyC/oztWFbgyhtNfDA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/less/download/less-4.1.2.tgz}
     name: less
@@ -2215,6 +2227,12 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
+
+  registry.npmmirror.com/underscore/1.13.2:
+    resolution: {integrity: sha512-ekY1NhRzq0B08g4bGuX4wd2jZx5GnKz6mKSqFL4nqBlfyMGiG10gDFhDTMEfYmDL6Jy0FUIZp7wiRB+0BP7J2g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/underscore/download/underscore-1.13.2.tgz}
+    name: underscore
+    version: 1.13.2
+    dev: false
 
   registry.npmmirror.com/vite-plugin-babel-import/2.0.5:
     resolution: {integrity: sha1-cz3wfa+pQQyuBvggYErr8LNGTTM=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite-plugin-babel-import/download/vite-plugin-babel-import-2.0.5.tgz}

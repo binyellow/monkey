@@ -1,18 +1,59 @@
-import { Button } from "antd";
-import styles from './style.module.scss';
+import React, { useState, useEffect, useRef } from "react";
+import json2ts from "json2ts";
+import { align2Selection, genMock, getClosestTable, genResultFromTable, genEnumAndOptions } from "./utils";
+import ConfigPopover from "./components/ConfigPopover/index";
 
-const App = () => {
-  const heee = () => console.log(123);
+const app = () => {
+
+  const ref = useRef(null);
+
+  const [selectedText, setSelectedText] = useState("");
+
+  useEffect(() => {
+    document.addEventListener("mouseup", mouseUp, true);
+  }, []);
+
+  const mouseUp = (e) => {
+    var text = "";
+    if (window.getSelection) {
+      text = window.getSelection().toString();
+    } else if (document.selection && document.selection.type != "Control") {
+      text = document.selection.createRange().text;
+    }
+    if ("" != text) {
+      console.clear();
+      align2Selection(e, ref.current);
+      setSelectedText(text);
+    }
+  };
+
+  const handleSure = () => {
+    try {
+      const res = json2ts.convert(selectedText);
+      console.log([res, genMock(selectedText)].join("\n\n"));
+    } catch (error) {
+      console.log("error");
+
+      if(ref?.current?.genEnum) {
+        console.log(genEnumAndOptions(selectedText));
+        return;
+      }
+
+      const table = getClosestTable(window.getSelection().anchorNode);
+
+      const { interfaces, mock } = genResultFromTable(table);
+      console.log([interfaces, mock].join("\n\n"));
+    }
+  };
+
   return (
-    <div className={styles.container}>
-      <Button.Group>
-        <Button onClick={heee} type="primary">1</Button>
-        <Button>2</Button>
-        <Button>3</Button>
-        <Button>4</Button>
-      </Button.Group>
-    </div>
+    <>
+      <div className="popover">
+        <ConfigPopover ref={ref} onSure={handleSure} />
+      </div>
+    </>
   );
 };
 
-export default App;
+export default app;
+

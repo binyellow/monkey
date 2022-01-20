@@ -29,13 +29,17 @@
     "vite-plugin-package-config": "^0.0.3"
   },
   "dependencies": {
-    "antd": "^4.18.4"
+    "antd": "^4.18.4",
+    "dom-align": "^1.12.2",
+    "json2ts": "^0.0.7"
   },
   "vite": {
     "optimizeDeps": {
       "include": [
         "antd",
         "antd/es/button",
+        "dom-align",
+        "json2ts",
         "react",
         "react-dom"
       ]
