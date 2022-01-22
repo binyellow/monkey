@@ -1,4 +1,5 @@
-import { randomString, getRandomIntBetween } from "../utils";
+import { getRandomIntBetween } from "./math";
+import { randomString } from "./string";
 
 // wiki 类型映射
 export const TypeMap = {
@@ -8,7 +9,14 @@ export const TypeMap = {
   string: "string",
 };
 
-export const MockMap = {
+export interface MockMapProps {
+  integer: () => number;
+  long: () => number;
+  float: () => number;
+  string: () => string;
+}
+
+export const MockMap: MockMapProps = {
   integer: () => getRandomIntBetween(1, 100),
   long: () => getRandomIntBetween(1, 100),
   float: () => getRandomIntBetween(1, 100),

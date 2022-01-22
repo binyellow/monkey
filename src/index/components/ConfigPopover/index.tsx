@@ -1,6 +1,6 @@
-import React, { forwardRef, useState, useEffect, useImperativeHandle } from "react";
+import React, { forwardRef, useState, useEffect } from "react";
+import { align2Selection } from "../../utils/dom";
 import "./index.less";
-import { align2Selection } from "../../utils";
 
 const cls = "popover-wrapper";
 

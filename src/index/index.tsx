@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import json2ts from "json2ts";
-import { align2Selection, genMock, getClosestTable, genResultFromTable, genEnumAndOptions } from "./utils";
+import { genResultFromTable } from "./utils";
 import ConfigPopover from "./components/ConfigPopover/index";
+import { align2Selection, getClosestTable } from "./utils/dom";
+import { genEnumAndOptions, genMock } from "./utils/gen";
 
 const app = () => {
   const [genEnum, setGenEnum] = useState(true);
