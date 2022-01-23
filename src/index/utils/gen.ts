@@ -8,6 +8,8 @@ import { formatCharsToTypeScript } from "../utils";
 import { trans } from "./request";
 import { transData } from "./gen.d";
 import { DOMElement, TableHTMLAttributes } from "react";
+import { transformInterface2Front } from "./interface";
+import { transformTs2MockValue } from "./mock";
 
 // 生成mock
 export const genMock = (target: string) => {
