@@ -24,7 +24,7 @@ const app = () => {
     }
     if ("" != text) {
       console.clear();
-      align2Selection(e, ref.current);
+      if (e.target.type !== "submit") align2Selection(e, ref.current);
       setSelectedText(text);
     }
   };

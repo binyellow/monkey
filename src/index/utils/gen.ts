@@ -27,7 +27,6 @@ export const genEnumAndOptions = (str: string, secret: string) => {
   const splitElementArr = ["，", ",", "、", " "];
   const curSplitEle = splitElementArr?.find((r) => str.indexOf(r) >= 0) || splitElementArr[0];
   const splitEnums = str.split(curSplitEle);
-  console.log(JSON.stringify(splitEnums));
   let queue: Promise<any>[] = [];
   let syntheticEnum: transData[] = [];
   splitEnums.forEach((row) => {
@@ -44,7 +43,6 @@ export const genEnumAndOptions = (str: string, secret: string) => {
     });
   });
   Promise.all(queue).then(() => {
-    console.log(syntheticEnum);
     const enumParams = syntheticEnum.reduce((pre, cur) => {
       const { en, value } = cur;
       return {

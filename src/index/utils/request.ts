@@ -38,7 +38,6 @@ export const trans = (query = 'hello, world!', secret: string) => {
         vocabId: vocabId,
       },
       success: function (data: any) {
-        console.log(data);
         resolve(data)
       },
     });
