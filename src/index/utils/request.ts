@@ -8,9 +8,9 @@
 import CryptoJS from "crypto-js";
 import $ from "jquery";
 
-export const trans = (query = 'hello, world!') => {
+export const trans = (query = 'hello, world!', secret: string) => {
   var appKey = "3d29f9da7fb013f8";
-  var key = ""; //注意：暴露appSecret，有被盗用造成损失的风险
+  var key = secret; //注意：暴露appSecret，有被盗用造成损失的风险
   var salt = new Date().getTime();
   var curtime = Math.round(new Date().getTime() / 1000);
   // 多个query可以用\n连接  如 query='apple\norange\nbanana\npear'
@@ -21,25 +21,28 @@ export const trans = (query = 'hello, world!') => {
 
   var sign = CryptoJS.SHA256(str1).toString(CryptoJS.enc.Hex);
   // unsafeWindow.GM_xmlhttpRequest
-  $.ajax({
-    url: "https://openapi.youdao.com/api",
-    type: "post",
-    dataType: "jsonp",
-    data: {
-      q: query,
-      appKey: appKey,
-      salt: salt,
-      from: from,
-      to: to,
-      sign: sign,
-      signType: "v3",
-      curtime: curtime,
-      vocabId: vocabId,
-    },
-    success: function (data: any) {
-      console.log(data);
-    },
-  });
+  return new Promise((resolve, reject)=> {
+    $.ajax({
+      url: "https://openapi.youdao.com/api",
+      type: "post",
+      dataType: "jsonp",
+      data: {
+        q: query,
+        appKey: appKey,
+        salt: salt,
+        from: from,
+        to: to,
+        sign: sign,
+        signType: "v3",
+        curtime: curtime,
+        vocabId: vocabId,
+      },
+      success: function (data: any) {
+        console.log(data);
+        resolve(data)
+      },
+    });
+  })
 
   function truncate(q: string) {
     var len = q.length;

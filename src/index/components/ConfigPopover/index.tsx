@@ -5,7 +5,7 @@ import "./index.less";
 const cls = "popover-wrapper";
 
 const ConfigPopover = (props, ref) => {
-  const { onSure, genEnum, setGenEnum } = props;
+  const { onSure, genEnum, setGenEnum, secret, setSecret } = props;
   const [interfaceChecked, setInterfaceChecked] = useState(true);
   const [mockChecked, setMockChecked] = useState(true);
 
@@ -25,6 +25,13 @@ const ConfigPopover = (props, ref) => {
       return;
     }
     setMockChecked(!mockChecked);
+  };
+
+  // key change
+  const handleKeyChange = (e) => {
+    const { value } = e.target;
+    setSecret(value);
+    window.__key__ = value;
   };
 
   return (
@@ -47,6 +54,7 @@ const ConfigPopover = (props, ref) => {
         genEnum
       </label>
       <input id="genEnum" type="checkbox" checked={genEnum} onClick={() => setGenEnum(!genEnum)} />
+      <input placeholder="请输入秘钥" value={secret} onChange={handleKeyChange} />
 
       <div>
         <button onClick={() => align2Selection({ clientX: -1000, clientY: -1000 }, ref.current)}>取消</button>

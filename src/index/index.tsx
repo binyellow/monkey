@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import json2ts from "json2ts";
-import { genResultFromTable } from "./utils";
 import ConfigPopover from "./components/ConfigPopover/index";
 import { align2Selection, getClosestTable } from "./utils/dom";
-import { genEnumAndOptions, genMock } from "./utils/gen";
+import { genEnumAndOptions, genMock, genResultFromTable } from "./utils/gen";
 
 const app = () => {
   const [genEnum, setGenEnum] = useState(true);
   const ref = useRef(null);
 
   const [selectedText, setSelectedText] = useState("");
+  const [secret, setSecret] = useState("");
 
   useEffect(() => {
     document.addEventListener("mouseup", mouseUp, true);
@@ -37,7 +37,7 @@ const app = () => {
       console.log("error");
 
       if (genEnum) {
-        console.log(genEnumAndOptions(selectedText));
+        console.log(genEnumAndOptions(selectedText, secret));
         return;
       }
 
@@ -51,7 +51,14 @@ const app = () => {
   return (
     <>
       <div className="popover">
-        <ConfigPopover ref={ref} onSure={handleSure} genEnum={genEnum} setGenEnum={setGenEnum} />
+        <ConfigPopover
+          ref={ref}
+          onSure={handleSure}
+          genEnum={genEnum}
+          setGenEnum={setGenEnum}
+          secret={secret}
+          setSecret={setSecret}
+        />
       </div>
     </>
   );
