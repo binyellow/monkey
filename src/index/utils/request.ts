@@ -6,11 +6,11 @@
  */
 
 import CryptoJS from "crypto-js";
-import $ from "jquery";
+import jquery from "jquery";
 
-export const trans = (query = 'hello, world!', secret: string) => {
+export const trans = (query = 'hello, world!') => {
   var appKey = "3d29f9da7fb013f8";
-  var key = secret; //注意：暴露appSecret，有被盗用造成损失的风险
+  var key = import.meta.env.VITE_SECRET; //注意：暴露appSecret，有被盗用造成损失的风险
   var salt = new Date().getTime();
   var curtime = Math.round(new Date().getTime() / 1000);
   // 多个query可以用\n连接  如 query='apple\norange\nbanana\npear'
@@ -22,7 +22,7 @@ export const trans = (query = 'hello, world!', secret: string) => {
   var sign = CryptoJS.SHA256(str1).toString(CryptoJS.enc.Hex);
   // unsafeWindow.GM_xmlhttpRequest
   return new Promise((resolve, reject)=> {
-    $.ajax({
+    jquery.ajax({
       url: "https://openapi.youdao.com/api",
       type: "post",
       dataType: "jsonp",

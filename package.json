@@ -16,6 +16,7 @@
     "@types/react": "^17.0.9",
     "@types/react-dom": "^17.0.6",
     "@types/tampermonkey": "^4.0.0",
+    "@types/to-camel-case": "^1.0.0",
     "clipboardy": "^2.3.0",
     "fs-extra": "^10.0.0",
     "less": "^4.1.2",
@@ -34,20 +35,23 @@
     "crypto-js": "^4.1.1",
     "dom-align": "^1.12.2",
     "jquery": "^3.6.0",
-    "json2ts": "^0.0.7"
+    "json2ts": "^0.0.7",
+    "to-camel-case": "^1.0.0"
   },
   "vite": {
     "optimizeDeps": {
       "include": [
         "antd",
         "antd/es/button",
+        "antd/es/radio",
         "axios",
         "crypto-js",
         "dom-align",
         "jquery",
         "json2ts",
         "react",
-        "react-dom"
+        "react-dom",
+        "to-camel-case"
       ]
     }
   }

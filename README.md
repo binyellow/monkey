@@ -14,5 +14,4 @@ Generate the tampermonkey script using Vite
 
 ## todo
 
-- [ ] gen enum and options
-- [ ] refactor code
+- [ ] 看下trigger怎么处理modal内点击问题

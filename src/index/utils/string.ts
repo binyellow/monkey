@@ -7,7 +7,7 @@
 
 // 首字母小写
 export const toLowerFirstLetter = (text: string) => {
-  return text.charAt(0).toLowerCase() + text.slice(1);
+  return text.charAt(0)?.toLowerCase() + text.slice(1);
 };
 
 export function randomString(e = 32) {

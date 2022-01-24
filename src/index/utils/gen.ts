@@ -10,6 +10,7 @@ import { transData } from "./gen.d";
 import { DOMElement, TableHTMLAttributes } from "react";
 import { transformInterface2Front } from "./interface";
 import { transformTs2MockValue } from "./mock";
+import camelCase from 'to-camel-case';
 
 // 生成mock
 export const genMock = (target: string) => {
@@ -22,8 +23,7 @@ export const getInterface = (jsonContent: object, objectName = "RootObject", opt
 };
 
 // 生成enum和options
-export const genEnumAndOptions = (str: string, secret: string) => {
-  console.clear();
+export const genEnumAndOptions = (str: string) => {
   const splitElementArr = ["，", ",", "、", " "];
   const curSplitEle = splitElementArr?.find((r) => str.indexOf(r) >= 0) || splitElementArr[0];
   const splitEnums = str.split(curSplitEle);
@@ -31,7 +31,7 @@ export const genEnumAndOptions = (str: string, secret: string) => {
   let syntheticEnum: transData[] = [];
   splitEnums.forEach((row) => {
     const enums = row.split("-");
-    const youDaoRes = trans(enums?.[1], secret);
+    const youDaoRes = trans(enums?.[1]);
     queue.push(youDaoRes);
     youDaoRes.then((data) => {
       const { translation = [] } = data as any;
@@ -47,7 +47,7 @@ export const genEnumAndOptions = (str: string, secret: string) => {
       const { en, value } = cur;
       return {
         ...pre,
-        [en]: value,
+        [camelCase(en)]: value,
       };
     }, {});
     const enumMap = "export enum Enum =" + " " + formatCharsToTypeScript(enumParams, "Enum", [], "enum");
@@ -57,7 +57,7 @@ export const genEnumAndOptions = (str: string, secret: string) => {
       JSON.stringify(
         syntheticEnum.map((r) => ({
           label: r.value,
-          value: `Enum.${r.en}`,
+          value: `Enum.${camelCase(r.en)}`,
         })),
         null,
         "\t"
